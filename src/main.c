@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 19:16:43 by mdiez-as          #+#    #+#             */
-/*   Updated: 2023/09/19 19:19:55 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2023/09/21 17:07:41 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 #include "../libft/libft.h"
 #include "../MinilibX/mlx.h"
 
-int		hook_expose(t_mlx *mlx)
+int	hook_expose(t_mlx *mlx)
 {
 	render(mlx);
 	return (0);
 }
 
-int		die(char *reason)
+int	die(char *reason)
 {
 	ft_putendl(reason);
 	return (1);
 }
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_mlx		*mlx;
 	t_fractal	*f;
@@ -48,4 +48,3 @@ int		main(int argc, char **argv)
 	mlx_loop(mlx->mlx);
 	return (0);
 }
-

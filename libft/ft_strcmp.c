@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/19 20:19:24 by mdiez-as          #+#    #+#             */
-/*   Updated: 2023/09/22 20:13:16 by mdiez-as         ###   ########.fr       */
+/*   Created: 2023/09/22 19:55:24 by mdiez-as          #+#    #+#             */
+/*   Updated: 2023/09/22 19:56:14 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <string.h>
 
-void	ft_putendl(char *s)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	ft_putendl_fd(s, 1);
+	while (*s1 && *s1 == *s2)
+	{
+		s1++;
+		s2++;
+	}
+	return ((unsigned char)*s1 - (unsigned char)*s2);
 }

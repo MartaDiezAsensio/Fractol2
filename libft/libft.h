@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 13:40:55 by mdiez-as          #+#    #+#             */
-/*   Updated: 2023/09/19 20:22:13 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2023/09/22 20:13:44 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,10 @@ s_list	*ft_lstmap(s_list *lst, void *(*f)(void *), void (*del)(void *));
 
 
 char	*ft_strcpy(char *dst, const char *src);
-void	ft_putendl(char const *s);
+void	ft_putendl(char *s);
+void	ft_memdel(void **ap);
+void	*ft_memalloc(size_t size);
+int		ft_lerpi(int first, int second, double p);
+int		ft_strcmp(const char *s1, const char *s2);
 
 #endif

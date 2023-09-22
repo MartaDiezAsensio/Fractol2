@@ -6,65 +6,79 @@
 #    By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 19:20:10 by mdiez-as          #+#    #+#              #
-#    Updated: 2023/09/18 16:58:59 by mdiez-as         ###   ########.fr        #
+#    Updated: 2023/09/22 20:23:00 by mdiez-as         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-GREEN = \033[0;32m
-RED = \033[0;31m
-RESET = \033[0m
-
-CC = cc
-CFLAGS = -Wall -Werror -Wextra
-LIBFT_PATH = libft
-MLX_PATH = MiniLibX
-
-SRC_DIR = src
-OBJ_DIR = obj
-INCLUDE_DIR = includes
-
-SRC_FILES = $(SRC_DIR)/main.c
-OBJ_FILES = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
-
-LIBFT = $(LIBFT_PATH)/libft.a
-MLX = $(MLX_PATH)/libmlx.a
-
 NAME = fractol
 
-all: $(NAME)
+# Compiler
+CC = cc
+CFLAGS = -Wall -Werror -Wextra
 
-$(NAME): $(OBJ_FILES) $(LIBFT) $(MLX)
-	@$(CC) $(CFLAGS) -o $@ $^ -L$(LIBFT_PATH) -lft -L$(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
-	@echo "$(NAME): $(GREEN)object files were created$(RESET)"
-	@echo "$(NAME): $(GREEN)$(NAME) was created$(RESET)"
+# Directories
+SRCDIR	= src
+INCDIR	= includes
+OBJDIR	= obj
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -I$(INCLUDE_DIR) -I$(LIBFT_PATH) -I$(MLX_PATH) -c -o $@ $<
-	@echo "$(NAME): $(GREEN)$(OBJ_DIR) was created$(RESET)"
+# src / obj files
+SRC		= src/main.c \
+		  src/window.c \
+		  src/image.c \
+		  src/mouse.c \
+		  src/keyboard.c \
+		  src/zoom.c \
+		  src/fractal.c \
+		  src/palette.c \
+		  src/draw.c \
+		  src/color.c \
+		  src/viewport.c \
+		  src/burningship.c  \
+		  src/julia.c  \
+		  src/mandelbrot.c
 
-$(LIBFT):
-	@$(MAKE) -C $(LIBFT_PATH)
-	@echo "$(NAME): $(GREEN)$(LIBFT) was created$(RESET)"
+#OBJ		= $(addprefix $(OBJDIR)/,$(SRC:.c=.o))
+OBJ		= $(patsubst src/%.c, $(OBJDIR)/%.o, $(SRC))
 
-$(MLX):
-	@$(MAKE) -C $(MLX_PATH)
-	@echo "$(NAME): $(GREEN)$(MLX) was created$(RESET)"
+# MinilibX Library
+MLX		= MinilibX
+MLX_LNK	= -L $(MLX) -l mlx -framework OpenGL -framework AppKit
+MLX_INC	= -I $(MLX)
+MLX_LIB	= $(addprefix $(MLX),mlx.a)
+
+# Libft Library
+FT		= libft
+FT_LIB	= $(addprefix $(FT),libft.a)
+FT_INC	= -I ./libft
+FT_LNK	= -L ./libft -l ft -l pthread
+
+
+all: obj $(FT_LIB) $(MLX_LIB) $(NAME)
+
+obj:
+	mkdir -p $(OBJDIR)
+	mkdir -p $(OBJDIR)/fractals
+
+$(OBJDIR)/%.o:$(SRCDIR)/%.c
+	$(CC) $(CFLAGS) $(MLX_INC) $(FT_INC) -I $(INCDIR) -o $@ -c $<
+
+$(FT_LIB):
+	@make -C $(FT)
+
+$(MLX_LIB):
+	@make -C $(MLX)
+
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) $(MLX_LNK) $(FT_LNK) -lm -o $(NAME)
 
 clean:
-	@$(MAKE) -C $(LIBFT_PATH) clean
-	@$(MAKE) -C $(MLX_PATH) clean
-	@rm -r $(OBJ_DIR)
-	@echo "$(NAME): $(RED)$(OBJ_DIR) was deleted$(RESET)"
-	@echo "$(NAME): $(RED)object files were deleted$(RESET)"
-
+	rm -rf $(OBJDIR)
+	make -C $(FT) clean
+	make -C $(MLX) clean
 
 fclean: clean
-	@$(MAKE) -C $(LIBFT_PATH) fclean
-	@echo "$(NAME): $(RED)$(LIBFT) was deleted$(RESET)"
-	@rm $(NAME)
-	@echo "$(NAME): $(RED)$(NAME) was deleted$(RESET)"
+	rm -rf $(NAME)
+	make -C $(FT) fclean
+	rm a.out
 
 re: fclean all
-
-.PHONY: all clean fclean re

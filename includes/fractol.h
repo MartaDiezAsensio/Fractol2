@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:28:39 by mdiez-as          #+#    #+#             */
-/*   Updated: 2023/09/19 19:29:27 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2023/09/21 17:10:52 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,31 +137,64 @@ struct				s_mlx
 	int			mouselock;
 };
 
-t_mlx				*mlxdel(t_mlx *mlx);
-t_mlx				*init(t_fractal *f);
-void				render(t_mlx *mlx);
-void				draw(t_mlx *mlx);
-int					hook_mousedown(int button, int x, int y, t_mlx *mlx);
-int					hook_mouseup(int button, int x, int y, t_mlx *mlx);
-int					hook_mousemove(int x, int y, t_mlx *mlx);
-int					hook_keydown(int key, t_mlx *mlx);
-int					hook_expose(t_mlx *mlx);
-t_image				*del_image(t_mlx *mlx, t_image *img);
-t_image				*new_image(t_mlx *mlx);
-void				clear_image(t_image *img);
-void				image_set_pixel(t_image *image, int x, int y, int color);
-t_fractal			*fractal_match(char *str);
-int					get_color(t_pixel p, t_mlx *mlx);
-t_palette			*get_palettes();
-void				zoom(int x, int y, t_viewport *v, double z);
-void				viewport_fit(t_viewport *v);
-void				reset_viewport(t_mlx *mlx);
-t_complex			screen_to_complex(int x, int y, t_viewport *v);
-t_pixel				mandelbrot_pixel(int x, int y, t_viewport *v, t_mlx *mlx);
-void				mandelbrot_viewport(t_viewport *v);
-t_pixel				burningship_pixel(int x, int y, t_viewport *v, t_mlx *mlx);
-void				burningship_viewport(t_viewport *v);
-t_pixel				julia_pixel(int x, int y, t_viewport *v, t_mlx *mlx);
-void				julia_viewport(t_viewport *v);
+// Color
+t_color		clerp(t_color c1, t_color c2, double p);
+t_color		linear_color(double i, int max, t_palette *p);
+t_color		smooth_color(t_pixel p, int max, t_palette *pal);
+int			get_color(t_pixel p, t_mlx *mlx);
+
+// Draw
+void		*render_thread(void *m);
+void		render(t_mlx *mlx);
+void		draw(t_mlx *mlx);
+
+// Fractal
+t_fractal	*get_fractals(void);
+t_fractal	*fractal_match(char *str);
+
+// Image
+void		image_set_pixel(t_image *image, int x, int y, int color);
+void		clear_image(t_image *image);
+t_image		*del_image(t_mlx *mlx, t_image *img);
+t_image		*new_image(t_mlx *mlx);
+
+// Keyboard
+int			draw_hooks(int key, t_mlx *mlx);
+void		move(int key, t_mlx *mlx);
+int			hook_keydown(int key, t_mlx *mlx);
+
+// Main Functions
+int			hook_expose(t_mlx *mlx);
+int			die(char *reason);
+
+// Mause
+int			hook_mousedown(int button, int x, int y, t_mlx *mlx);
+int			hook_mouseup(int button, int x, int y, t_mlx *mlx);
+int			hook_mousemove(int x, int y, t_mlx *mlx);
+
+// Palette
+t_palette	*get_palettes(void);
+
+// Viewport
+void		viewport_fit(t_viewport *viewport);
+void		reset_viewport(t_mlx *mlx);
+t_complex	screen_to_complex(int x, int y, t_viewport *viewport);
+
+// Window
+t_mlx		*mlxdel(t_mlx *mlx);
+t_mlx		*init(t_fractal *fractal);
+
+// Zoom
+void		zoom(int x, int y, t_viewport *viewport, double z);
+
+// Fractals
+t_pixel		mandelbrot_pixel(int x, int y, t_viewport *v, t_mlx *mlx);
+void		mandelbrot_viewport(t_viewport *v);
+
+t_pixel		burningship_pixel(int x, int y, t_viewport *v, t_mlx *mlx);
+void		burningship_viewport(t_viewport *v);
+
+t_pixel		julia_pixel(int x, int y, t_viewport *v, t_mlx *mlx);
+void		julia_viewport(t_viewport *v);
 
 #endif

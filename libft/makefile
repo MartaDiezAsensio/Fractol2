@@ -6,7 +6,7 @@
 #    By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 14:23:45 by mdiez-as          #+#    #+#              #
-#    Updated: 2023/05/17 21:14:12 by mdiez-as         ###   ########.fr        #
+#    Updated: 2023/09/22 20:19:17 by mdiez-as         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,9 +58,7 @@ SRCS_2	= ft_substr.c		\
 		  ft_putstr_fd.c	\
 		  ft_putendl_fd.c	\
 		  ft_putnbr_fd.c	\
-		  ft_striteri.c
-
-SRCS_BN = ft_lstnew.c		\
+		  ft_striteri.c		\
 		  ft_lstadd_front.c	\
 		  ft_lstsize.c		\
 		  ft_lstlast.c	\
@@ -68,7 +66,15 @@ SRCS_BN = ft_lstnew.c		\
 		  ft_lstclear.c  \
 		  ft_lstdelone.c  \
 		  ft_lstiter.c  \
-		  ft_lstmap.c
+		  ft_lstmap.c  \
+		  ft_strcpy.c  \
+		  ft_putendl.c  \
+		  ft_memdel.c  \
+		  ft_memalloc.c  \
+		  ft_strcmp.c  \
+		  ft_lerpi.c
+
+SRCS_BN = ft_lstnew.c		\
 
 SRCS	= $(SRCS_1)			\
 	  $(SRCS_2)				\

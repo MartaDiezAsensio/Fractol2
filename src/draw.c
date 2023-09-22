@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:59:46 by mdiez-as          #+#    #+#             */
-/*   Updated: 2023/09/19 20:29:14 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2023/09/21 17:07:59 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	*render_thread(void *m)
 	return (NULL);
 }
 
-void		render(t_mlx *mlx)
+void	render(t_mlx *mlx)
 {
 	int			i;
 	t_render	*r;
@@ -60,7 +60,7 @@ void		render(t_mlx *mlx)
 	draw(mlx);
 }
 
-void		draw(t_mlx *mlx)
+void	draw(t_mlx *mlx)
 {
 	int x;
 	int y;
