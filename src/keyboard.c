@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 19:27:56 by mdiez-as          #+#    #+#             */
-/*   Updated: 2023/09/22 19:49:58 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2023/09/24 16:48:21 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	hook_keydown(int key, t_mlx *mlx)
 		if (mlx->viewport.max / 2 >= 2)
 			mlx->viewport.max /= 2;
 	if (key == K_NUM_PLUS)
-		zoom(WIN_WIDTH / 2, WIN_HEIGHT / 2, &mlx->viewport, 1/ ZOOM);
+		zoom (WIN_WIDTH / 2, WIN_HEIGHT / 2, &mlx->viewport, 1 / ZOOM);
 	if (key == K_NUM_MINUS)
 		zoom(WIN_WIDTH / 2, WIN_HEIGHT / 2, &mlx->viewport, ZOOM);
 	move(key, mlx);

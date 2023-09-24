@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 18:30:36 by mdiez-as          #+#    #+#             */
-/*   Updated: 2023/09/21 17:07:26 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2023/09/24 16:54:41 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ t_complex	screen_to_complex(int x, int y, t_viewport *viewport)
 {
 	t_complex	p;
 
-	p.r = (((double)x / WIN_WIDTH) * (viewport->xmax - viewport->xmin)) * viewport->zoom 
-		+ viewport->xmin + viewport->offx;
-	p.i = (((double)y / WIN_HEIGHT) * (viewport->ymax - viewport->ymin)) * viewport->zoom
-		+ viewport->ymin + viewport->offy;
+	p.r = (((double)x / WIN_WIDTH) * (viewport->xmax - viewport->xmin))
+		* viewport->zoom + viewport->xmin + viewport->offx;
+	p.i = (((double)y / WIN_HEIGHT) * (viewport->ymax - viewport->ymin))
+		* viewport->zoom + viewport->ymin + viewport->offy;
 	return (p);
 }

@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:04:30 by mdiez-as          #+#    #+#             */
-/*   Updated: 2023/09/21 17:08:03 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2023/09/24 16:13:53 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ t_color	linear_color(double i, int max, t_palette *p)
 
 t_color	smooth_color(t_pixel p, int max, t_palette *pal)
 {
-	double i;
-	double zn;
-	double nu;
+	double	i;
+	double	zn;
+	double	nu;
 
 	zn = log(p.c.r * p.c.r + p.c.i * p.c.i) / 2.0f;
 	nu = log(zn / log(2)) / log(2);

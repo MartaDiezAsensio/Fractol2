@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:47:51 by mdiez-as          #+#    #+#             */
-/*   Updated: 2023/09/21 17:07:51 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2023/09/24 16:48:04 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,14 @@ t_image	*new_image(t_mlx *mlx)
 {
 	t_image	*img;
 
-	if ((img = ft_memalloc(sizeof(t_image))) == NULL)
+	img = ft_memalloc(sizeof(t_image));
+	if (!img)
 		return (NULL);
-	if ((img->image = mlx_new_image(mlx->mlx, WIN_WIDTH, WIN_HEIGHT)) == NULL)
+	img->image = mlx_new_image(mlx->mlx, WIN_WIDTH, WIN_HEIGHT);
+	if (!(img->image))
 		return (del_image(mlx, img));
-	img->ptr = mlx_get_data_addr(img->image, &img->bpp, &img->stride, &img->endian);
+	img->ptr = mlx_get_data_addr(img->image, &img->bpp, &img->stride,
+			&img->endian);
 	img->bpp /= 8;
 	return (img);
 }

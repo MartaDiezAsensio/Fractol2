@@ -6,13 +6,13 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 19:40:11 by mdiez-as          #+#    #+#             */
-/*   Updated: 2023/06/29 16:55:31 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2023/09/24 16:28:30 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(s_list *lst)
+int	ft_lstsize(t_list *lst)
 {
 	int	i;
 

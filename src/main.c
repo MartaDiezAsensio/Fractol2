@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 19:16:43 by mdiez-as          #+#    #+#             */
-/*   Updated: 2023/09/21 17:07:41 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2023/09/24 16:48:47 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int	main(int argc, char **argv)
 	f = fractal_match(argv[1]);
 	if (f->name == NULL)
 		return (die("error: invalid fractal name"));
-	if ((mlx = init(f)) == NULL)
+	mlx = init(f);
+	if (!mlx)
 		return (die("error: mlx couldn't initialize properly"));
 	reset_viewport(mlx);
 	render(mlx);

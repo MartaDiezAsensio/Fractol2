@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 17:59:57 by mdiez-as          #+#    #+#             */
-/*   Updated: 2023/09/21 17:07:22 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2023/09/24 17:01:40 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,11 @@ t_mlx	*init(t_fractal *fractal)
 	if (!mlx)
 		return (NULL);
 	title = ft_strjoin("Fract'ol - ", fractal->name);
-	if (!(mlx->mlx = mlx_init()) ||
-	!(mlx->window = mlx_new_window(mlx->mlx, WIN_WIDTH, WIN_HEIGHT, title)) ||
-	!(mlx->image = new_image(mlx)) ||
-	!(mlx->data = ft_memalloc(sizeof(t_pixel) * WIN_WIDTH * WIN_HEIGHT)))
+	mlx->mlx = mlx_init();
+	mlx->window = mlx_new_window(mlx->mlx, WIN_WIDTH, WIN_HEIGHT, title);
+	mlx->image = new_image(mlx);
+	mlx->data = ft_memalloc(sizeof(t_pixel) * WIN_WIDTH * WIN_HEIGHT);
+	if (!(mlx->mlx) || !(mlx->window) || !(mlx->image) || !(mlx->data))
 		return (mlxdel(mlx));
 	mlx->mouse.isdown = 0;
 	mlx->fractal = fractal;

@@ -6,7 +6,7 @@
 /*   By: mdiez-as <mdiez-as@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 18:59:46 by mdiez-as          #+#    #+#             */
-/*   Updated: 2023/09/21 17:07:59 by mdiez-as         ###   ########.fr       */
+/*   Updated: 2023/09/24 16:36:06 by mdiez-as         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	*render_thread(void *m)
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
-			*(t->mlx->data + y * WIN_WIDTH + x) =
-				t->mlx->fractal->pixel(x, y, &t->mlx->viewport, t->mlx);
+			*(t->mlx->data + y * WIN_WIDTH + x)
+				= t->mlx->fractal->pixel(x, y, &t->mlx->viewport, t->mlx);
 			x++;
 		}
 		y++;
@@ -62,8 +62,8 @@ void	render(t_mlx *mlx)
 
 void	draw(t_mlx *mlx)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	y = 0;
 	while (y < WIN_HEIGHT)
@@ -72,7 +72,7 @@ void	draw(t_mlx *mlx)
 		while (x < WIN_WIDTH)
 		{
 			image_set_pixel(mlx->image, x, y,
-					get_color(*(mlx->data + y * WIN_WIDTH + x), mlx));
+				get_color(*(mlx->data + y * WIN_WIDTH + x), mlx));
 			x++;
 		}
 		y++;
